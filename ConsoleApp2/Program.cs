@@ -2,31 +2,30 @@
 
 //namespace MyApp
 //{
-//    internal class Program
-//    {
 //        struct XY
 //        {
 //            private int X { get; set; }
 //            private int Y { get; set; }
-//            public XY(int x,int y)
+//            public XY(int x, int y)
 //            {
-//                X = x;Y = y;
+//                X = x; Y = y;
 //            }
 //            public override string ToString()
 //            {
 //                return $"X is {X}\nY is {Y}";
 //            }
 //        }
+//    internal class Program
+//    {
 //        static void Main(string[] args)
 //        {
-//            XY xy = new XY(1,3);
+//            XY xy = new XY(1, 3);
 //            Console.WriteLine(xy);
 //        }
 //    }
 //}
 
 ////////////////
-
 using System;
 
 namespace MyApp
@@ -35,13 +34,12 @@ namespace MyApp
     {
         private double Nume { get; set; }
         private double Denom { get; set; }
-
         public Fraction(double numerator, double denominator)
         {
             Nume = numerator;
             Denom = denominator;
         }
-        public Fraction Add( Fraction Other)
+        public Fraction Add(Fraction Other)
         {
             double Numerator = 0;
             if (Nume == Other.Nume) Denom = Denom + Other.Denom;
@@ -77,24 +75,27 @@ namespace MyApp
             Denom = Denom * Other.Nume;
             return this;
         }
-        public override string ToString() {
-            double num1, num2 = 0;
+        public override string ToString()
+        {
+            double num1 = 0;
             bool isokay = true;
-            for (var i = Nume; i >=1; i--)
+            for (var i = Nume; i >= 1; i--)
             {
-                if (Nume%i==0)
+                if (Nume % i == 0)
                 {
                     num1 = i;
-                    for(var j = Denom; j >=1; j--)
+                    for (var j = Denom; j >= 1; j--)
                     {
-                        if()
+                        if (Denom % j == 0 && Denom / j == num1)
+                        {
+                            isokay = false;
+                            break;
+                        }
                     }
                 }
+                if (isokay == false) break;
             }
-
-
-
-            return $"{Nume}/{Denom}"; 
+            return $"{Nume / num1}/{Denom / num1}";
         }
     }
 
@@ -105,10 +106,10 @@ namespace MyApp
         {
             Fraction f1 = new Fraction(1, 2);
             Fraction f2 = new Fraction(2, 3);
-            //Fraction f3 = f1.Add(f2);
+            Fraction f3 = f1.Add(f2);
             //Fraction f3 = f1.Minus(f2);
             //Fraction f3 = f1.Divded(f2);
-            Fraction f3 = f1.Multiply(f2);
+            // Fraction f3 = f1.Multiply(f2);
             Console.WriteLine(f3);
         }
     }
